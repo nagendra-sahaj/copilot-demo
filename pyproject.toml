@@ -1,0 +1,23 @@
+[project]
+name = "copilot-demo"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "streamlit>=1.32.0",
+    "openai>=1.30.0",
+    "duckdb>=0.10.0",
+    "chromadb>=0.5.0",
+    "pandas>=2.0.0",
+    "plotly>=5.20.0",
+    "python-dotenv>=1.0.0",
+    "faker>=24.0.0",
+    "tiktoken>=0.7.0",
+    "tabulate>=0.9.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["brains", "shared", "app"]
