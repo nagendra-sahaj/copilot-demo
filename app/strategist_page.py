@@ -41,17 +41,19 @@ def render():
 
     # Check for example query selection from sidebar
     selected_query = st.session_state.pop("selected_query_strategist", None)
+    if selected_query:
+        st.session_state["strategist_input"] = selected_query
 
     question = st.text_input(
         "Your question",
-        value=selected_query or "",
+        key="strategist_input",
         placeholder="Ask a business question about issues, features, or client data...",
         label_visibility="collapsed",
     )
 
     submit = st.button("Generate insight", type="primary")
 
-    if not (submit or selected_query):
+    if not submit:
         return
 
     if not question.strip():

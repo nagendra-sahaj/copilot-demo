@@ -42,10 +42,12 @@ def render():
         return
 
     selected_query = st.session_state.pop("selected_query_resolver", None)
+    if selected_query:
+        st.session_state["resolver_input"] = selected_query
 
     query = st.text_area(
         "Describe the issue",
-        value=selected_query or "",
+        key="resolver_input",
         placeholder="Ask about issues — summaries, patterns, resolution guidance, or specific clients...",
         height=100,
         label_visibility="collapsed",
@@ -53,7 +55,7 @@ def render():
 
     submit = st.button("Ask Resolver", type="primary")
 
-    if not (submit or selected_query):
+    if not submit:
         return
 
     if not query.strip():

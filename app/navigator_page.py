@@ -41,17 +41,19 @@ def render():
         return
 
     selected_query = st.session_state.pop("selected_query_navigator", None)
+    if selected_query:
+        st.session_state["navigator_input"] = selected_query
 
     question = st.text_input(
         "Your question",
-        value=selected_query or "",
+        key="navigator_input",
         placeholder="Ask a how-to question about UAT or FB360...",
         label_visibility="collapsed",
     )
 
     submit = st.button("Get answer", type="primary")
 
-    if not (submit or selected_query):
+    if not submit:
         return
 
     if not question.strip():
